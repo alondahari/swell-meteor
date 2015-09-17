@@ -5,5 +5,15 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
+mquandalle:jade
+fourseven:scss
+coffeescript
+accounts-password
+simple:reactive-method
+momentjs:moment
+msavin:mongol
+stevezhu:lodash
+msavin:jetsetter
+reactive-var
+# ian:accounts-ui-bootstrap-3
+twbs:bootstrap
