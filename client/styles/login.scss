@@ -7,13 +7,13 @@
 	position: fixed;
 	background-color: rgba(42, 86, 128,1);
 	transition: opacity 0.4s;
-	opacity: 0;
+	// opacity: 0;
 }
 
 .bg-video{
 	min-width: 100%;
 	min-height: 100%;
-	
+
 	height: auto;
 	width: auto;
 	position: fixed;
@@ -34,7 +34,7 @@
 }
 
 .button-signup{
-	
+
 	float: left;
 	width: 45%;
 	background-color: #9491BF;
