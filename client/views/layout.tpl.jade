@@ -1,9 +1,10 @@
 //- .loading-logo S
 //-   .loading-spinner
 
-.bg-video-container
-  video.bg-video(autoplay loop muted)
-    source.bg-video-source(src="/LocalSurfClothingLifestyle.mp4" type="video/mp4")
+unless currentUser
+  .bg-video-container
+    video.bg-video(autoplay loop muted)
+      source.bg-video-source(src="/LocalSurfClothingLifestyle.mp4" type="video/mp4")
 
 .wrapper
   +yield
