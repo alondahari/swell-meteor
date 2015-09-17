@@ -1,0 +1,76 @@
+@media (min-width: 1281px){
+	body, html{
+		background: url("../img/background-lg.jpg") no-repeat center center fixed;
+		background-size: cover;
+	}
+	#map-canvas{
+		height: 450px;
+	}
+}
+
+@media (min-width: 701px) and (max-width: 1280px){
+	body, html{
+		background: url("../img/background-md.jpg") no-repeat center center fixed;
+		background-size: cover;
+	}
+	#map-canvas{
+		height: 400px;
+	}
+}
+
+@media (min-width: 451px) and (max-width: 700px){
+	body, html{
+		background: url("../img/background-sm.jpg") no-repeat center center fixed;
+		background-size: cover;
+	}
+	#map-canvas{
+		height: 350px;
+	}
+}
+
+
+
+@media (max-width: 450px) {
+	body, html{
+		background: url("../img/background-xs.jpg") no-repeat center center fixed;
+		background-size: cover;
+	}
+	.header h1{
+		font-size: 3rem;
+	}
+
+	.header-login {
+		top: 17px;
+	}
+
+	.button-back{
+		top: 15px;
+	}
+
+	.avatar{
+		margin-top: -10px;
+	}
+
+	.view{
+		margin-top: 63px;
+	}
+}
+
+@media (max-width: 350px) {
+	.header h1{
+		font-size: 2.5rem;
+	}
+
+	.header-login {
+		font-size: 1.8rem;
+	}
+
+	.avatar{
+		margin-top: -8px;
+		width: 40px;
+		height: 40px;
+	}
+	.view{
+		margin-top: 57px;
+	}
+}

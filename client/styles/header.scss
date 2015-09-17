@@ -1,0 +1,55 @@
+.header{
+	font-family: 'Great Vibes', cursive;
+
+	background-color: rgba(0,0,0,.4);
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	max-width: 700px;
+	margin: auto;
+	z-index: 4;
+	top: 0;
+
+}
+
+.header h1{
+	padding: 20px 100px 10px 70px;
+	margin: 0;
+	font-size: 4rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	height: 100%;
+	overflow: hidden;
+}
+
+.header-login{
+	position: absolute;
+	right: 20px;
+	font-family: $font-main;
+	font-size: 2rem;
+	top: 23px;
+}
+
+.header-login:hover, .header-login:active{
+	text-decoration: underline;
+}
+
+.avatar{
+	max-width: 50px;
+	max-height: 50px;
+	border-radius: 10px;
+	margin-top: -12px;
+}
+
+.button-back{
+	font-size: 3rem;
+	position: absolute;
+	left: 15px;
+	top: 22px;
+	color: white;
+
+	&:hover, &:active{
+		text-decoration: none;
+	}
+}
+
