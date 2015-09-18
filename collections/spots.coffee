@@ -1,8 +1,16 @@
 @Spots = new Mongo.Collection 'spots'
 
 if Meteor.isServer
-  Meteor.publish 'spots', (query={}, options={}) ->
-    Spots.find query, options
+  Meteor.publish 'continents', ->
+    continentSpotsIds = _.pluck _.uniq(Spots.find().fetch(), 'continent'), '_id'
+    Spots.find {_id: {$in: continentSpotsIds}}
+  Meteor.publish 'regions', (continent) ->
+    regionSpotsIds = _.pluck _.uniq(Spots.find({continent: continent}).fetch(), 'region'), '_id'
+    Spots.find {_id: {$in: regionSpotsIds}}
+  Meteor.publish 'spots', (region) ->
+    spotsIds = _.pluck _.uniq(Spots.find({region: region}).fetch(), 'spot'), '_id'
+    Spots.find {_id: {$in: spotsIds}}
+
 
   Spots.deny
     insert: -> true

@@ -1,9 +1,12 @@
 Template.location.onCreated ->
   @selectedContinent = new ReactiveVar 'Europe'
   @selectedRegion = new ReactiveVar 'Azores'
-  # @selectedSpot = new ReactiveVar null
   GoogleMaps.load()
-  @subscribe 'spots'
+  @subscribe 'continents'
+  @autorun =>
+    regions = @subscribe 'regions', @selectedContinent.get()
+    @subscribe 'spots', @selectedRegion.get(), =>
+      onReady: centerMap Spots.findOne {region: @selectedRegion.get()}
 
 Template.location.helpers
   mapOptions: ->
@@ -17,12 +20,10 @@ Template.location.helpers
     _.uniq Spots.find().fetch(), 'continent'
 
   regions: ->
-    selectedContinent = Template.instance().selectedContinent.get()
-    _.uniq Spots.find({continent: selectedContinent}).fetch(), 'region'
+    _.uniq Spots.find({continent: Template.instance().selectedContinent.get()}).fetch(), 'region'
 
   spots: ->
-    selectedRegion = Template.instance().selectedRegion.get()
-    Spots.find({region: selectedRegion}).fetch()
+    Spots.find({region: Template.instance().selectedRegion.get()})
 
 Template.location.events
   'change .location-select': (e) ->
@@ -35,15 +36,12 @@ Template.location.events
       Template.instance().selectedRegion.set spot.region
     else if selectLevel is 'regions'
       Template.instance().selectedRegion.set $target.val()
-      spot = Spots.findOne {region: $target.val()}
     else if selectLevel is 'spots'
-      spot = Spots.findOne {_id: $target.val()}
-    centerMap spot
+      centerMap Spots.findOne {_id: $target.val()}
 
 # Helperz
 # -------
-centerMap = (spot)->
-  GoogleMaps.maps.surfLocations?.instance.setCenter {
+centerMap = (spot) ->
+  GoogleMaps.maps.surfLocations?.instance.setCenter
     lat: spot.lat
     lng: spot.lng
-  }
