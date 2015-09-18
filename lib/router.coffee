@@ -6,3 +6,4 @@ Router.route '/',
  name: 'login'
 
 Router.route 'location'
+Router.route 'userProfile'

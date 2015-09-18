@@ -1,0 +1,5 @@
+if currentUser
+  a.header-login(href="{{pathFor 'userProfile'}}")
+    img.avatar.user-avatar(src="{{or currentUser.profile.avatar '/default-avatar.jpg'}}")
+else
+  a.header-login(href="#") Login

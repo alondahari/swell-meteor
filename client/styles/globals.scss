@@ -33,7 +33,7 @@ body, html{
 	/*set background image with overlay*/
 	content: '';
 	background: linear-gradient(rgba(79, 158, 245, .2),rgba(79, 158, 245, .7)),
-		url("../img/footer_lodyas.png");
+		url("/footer_lodyas.png");
 
 	/*fixes background image*/
 
@@ -91,7 +91,7 @@ $unit: $size / 16;
 
 %spinner-double-section {
   @extend %spinner;
-  
+
   &:before,
   &:after {
     content: '';
@@ -112,7 +112,7 @@ $unit: $size / 16;
   position: absolute;
   top: 0px;
   left: 0px;
-	
+
   &:before,
   &:after {
     top: ($unit*-3);
