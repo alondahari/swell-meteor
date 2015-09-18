@@ -1,12 +1,38 @@
 Template.location.onCreated ->
   @selectedContinent = new ReactiveVar 'Europe'
   @selectedRegion = new ReactiveVar 'Azores'
+  @mapReady = new ReactiveVar false
   GoogleMaps.load()
+  GoogleMaps.ready 'surfLocations', =>
+    @mapReady.set true
   @subscribe 'continents'
   @autorun =>
-    regions = @subscribe 'regions', @selectedContinent.get()
-    @subscribe 'spots', @selectedRegion.get(), =>
-      onReady: centerMap Spots.findOne {region: @selectedRegion.get()}
+    regions = @subscribe 'regionsInContinent', @selectedContinent.get()
+    @subscribe 'spotsInRegion', @selectedRegion.get(), =>
+      centerMap Spots.findOne {region: @selectedRegion.get()}
+
+    if @subscriptionsReady() and @mapReady.get()
+      spots = Spots.find({region: @selectedRegion.get()}).fetch()
+      # remove all markers from other regions
+      _.each @markers, (marker) ->
+        marker.setMap(null)
+      @markers = []
+      # add all markers of the current region
+      _.each spots, (spot) =>
+        spotCoords = new google.maps.LatLng spot.lat, spot.lng
+        marker = new google.maps.Marker
+          position: spotCoords
+          map: GoogleMaps.maps.surfLocations.instance
+          title: spot.spot
+          id: spot._id
+          icon: '/surf-marker.svg'
+
+        google.maps.event.addListener marker, 'click', ->
+          $('.location-select[name=spots]').val @id
+          centerMap {lat: @position.H, lng: @position.L}
+
+        @markers.push marker
+
 
 Template.location.helpers
   mapOptions: ->
