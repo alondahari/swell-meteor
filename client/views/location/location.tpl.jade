@@ -21,7 +21,8 @@
 
       select.form-control.location-select(name='spots')
         each spots
-          option(value=spot)= spot
+          //- with the actual spot, we want the id and not the name of the spot
+          option(value=_id)= spot
 
   button(role="button").btn.btn-primary.btn-lg.button-submit See Surf Spot
 
